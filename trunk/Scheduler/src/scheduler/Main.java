@@ -9,7 +9,10 @@ package scheduler;
  *
  * @author tarek
  */
-public class Main {
+
+
+
+public class Main{
 
     /**
      * @param args the command line arguments
@@ -105,6 +108,60 @@ public class Main {
         }
        
         
+    }
+    
+    public static void startMultilevelFeedback(Process[] p)
+    {
+        
+        Queue <Process> q0 = new Queue<Process>();
+        Queue <Process> q1 = new Queue<Process>();
+        Queue <Process> q2 = new Queue<Process>();
+        Queue <Process> q3 = new Queue<Process>();
+        
+        
+        int totalTime=0;
+        
+        for(int i=0; i<p.length; i++)   //Get total time
+        {
+            totalTime+=p[i].Tr;
+        }
+        
+        q3.enqueue(p[3]);
+        q1.enqueue(p[0]);
+        q1.enqueue(p[1]);
+        q2.enqueue(p[2]);
+        q0.enqueue(p[4]);
+        
+        
+    /*    for(int i=0; i<totalTime; i++)
+        {
+            
+            for(int=0; i<p.length; i++)
+            {
+                if(i==p[i].Ta){
+                    q1.enqueue(p[i]);
+                    p[i].quantum=1;
+                }
+            }
+            
+            
+        }*/
+        
+        System.out.println(getQueuedProcess(q0,q1,q2,q3).name);
+        
+    }
+    
+    public static Process getQueuedProcess(Queue<Process> q0, Queue<Process> q1, Queue<Process> q2,Queue<Process> q3)
+    {
+        Process toRun;
+        
+        if((toRun=q0.dequeue())==null)
+            if((toRun=q1.dequeue())==null)
+                if((toRun=q2.dequeue())==null)
+                    if((toRun=q3.dequeue())==null)
+                        return toRun;
+        
+        return toRun;
     }
 
 }
