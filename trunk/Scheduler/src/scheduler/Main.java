@@ -16,28 +16,39 @@ public class Main {
      */
     public static void main(String[] args) {
        
-        Process A=new Process("A", 5, "Tarek");
-        Process B=new Process("B", 2, "Tarek");
-        Process C=new Process("C", 10, "Tarek");
-        
-        
-       while(A.run())
+       Process[] processes=new Process[5];
+       
+       for(int i=0; i<processes.length; i++)
        {
-           System.out.print(A.name);
-           
+           processes[i]=new Process("P"+i,3, i, "tarek");
        }
+       
+       
+       
+       startShortestTimeRemaining(processes);
+     
         
-               while(B.run())
-       {
-           System.out.print(B.name);
-           
-       }
+    }
+    
+    public static Process getShortestTimeRemaining(Process p)
+    {
         
-               while(C.run())
-       {
-           System.out.print(C.name);
-           
-       }
+        
+    return p;    
+    }
+    
+    public static void startShortestTimeRemaining(Process[] p)
+    {
+        
+        int totalTime=0;
+        
+        for(int i=0; i<p.length; i++)
+        {
+            totalTime+=p[i].Tr;
+        }
+        
+        System.out.println(totalTime);
+        
     }
 
 }
