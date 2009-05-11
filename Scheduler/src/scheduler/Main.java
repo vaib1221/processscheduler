@@ -82,9 +82,15 @@ public class Main {
             totalTime+=p[i].Tr;
         }
         
+        for(int i=0; i<totalTime; i++) //print timeline
+        {
+           System.out.print(i+"\t"); 
+        }
+        System.out.println("\n");
+        
         Process current=p[0];
         
-        for(int i=0; i<totalTime; i++)   //TimeLine
+        for(int i=0; i<totalTime; i++)   //populate timeLine
         {
            current=getShortestTimeRemainingProcess(p, i, current);
           
@@ -94,7 +100,7 @@ public class Main {
                i--;
            else
            //System.out.print(i+": "+current.name+""+run+"   ");
-           System.out.print(i+": "+current.name+"    ");
+           System.out.print(current.name+"\t");
           
             
         }
