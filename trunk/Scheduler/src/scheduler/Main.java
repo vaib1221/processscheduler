@@ -96,10 +96,9 @@ public class Main {
           
            boolean run;
            
-           if(!(run=current.run()))
+           if(!(run=current.run()))  //If process has finished, rollback time, next time it'll be skipped
                i--;
            else
-           //System.out.print(i+": "+current.name+""+run+"   ");
            System.out.print(current.name+"\t");
           
             
