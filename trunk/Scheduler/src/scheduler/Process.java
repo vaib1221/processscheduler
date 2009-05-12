@@ -15,6 +15,8 @@ public class Process {
     int Ta;
     int Tr;
     String username;
+    int quantum;
+    int initQuantum;
     
     public Process(String name, int Tr, int Ta, String username)
     {
@@ -23,6 +25,25 @@ public class Process {
         this.Tr=Tr;
         this.username=username;  
     }
+    
+     public Process(String name, int Tr, int Ta, String username, int quantum)
+    {
+        this.name=name;
+        this.Ta=Ta;
+        this.Tr=Tr;
+        this.username=username;  
+        this.quantum=quantum;
+        this.initQuantum=quantum;
+    }
+     
+     public void setQuantum(int quanta)
+     {
+        quantum=quanta;
+        initQuantum=quanta;
+         
+         
+     }
+     
     
     public boolean run()
     {
