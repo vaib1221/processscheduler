@@ -117,6 +117,11 @@ public class Main{
        static Queue <Process> q1 = new Queue<Process>();
        static Queue <Process> q2 = new Queue<Process>();
        static Queue <Process> q3 = new Queue<Process>();
+       
+       
+       
+       
+       static Process currentProcess;
     
     public static void startMultilevelFeedback(Process[] p)
     {
@@ -139,6 +144,7 @@ public class Main{
             ////////////////////////////////////////////////////////
             
         int count=totalTime;
+        
         for(int i=0; i<totalTime; i++) ///////populate time line
         {
             
@@ -152,14 +158,21 @@ public class Main{
                 }
             }
             
-            
+//            System.out.println("T="+i);
+//            printQueues();
                                             //start the actual work
             Process toRun;
-            if((toRun=running.dequeue())==null)
+           
                 toRun=getQueuedProcess();
+                
+                currentProcess=toRun;
             
-           //if(toRun.name.equals("E"))
-                //System.out.println("E===> "+toRun.quantum+" and B===>"+p[1].quantum);
+//           if(toRun.name.equals("E"))
+//                System.out.println("E===> "+toRun.quantum+" and B===>"+p[1].quantum);
+//            
+//            if(toRun.name.equals("B"))
+//                System.out.println("B===> "+toRun.quantum+" and E===>"+p[4].quantum);
+                        
             
             
             
@@ -186,8 +199,11 @@ public class Main{
             
             
             
+            if(toRun.Tr>0)
+            {
             if(toRun.quantum==0)
             {
+                currentProcess=null;
             switch(toRun.initQuantum)
             {
                 case 1: q1.enqueue(toRun); toRun.setQuantum(2); break; 
@@ -197,15 +213,9 @@ public class Main{
             }
             
             }
-            else
-            {
-                //if(toRun.Tr>-1)
-                    if(toRun.name.equals("E"))
-                    System.out.print("W\t");
-                running.enqueue(toRun);
-            }
             
-             
+            
+            } 
         
         }
         
@@ -216,21 +226,74 @@ public class Main{
     }
     
     
+    public static void printQueues()
+    {
+        
+        //Queue <Process> running = new Queue<Process>();
+        
+        
+        for(int i=0; i<q0.size(); i++)
+        {
+            Process temp=q0.dequeue();
+            System.out.print(temp.name+"\t");
+            q0.enqueue(temp);
+        }
+       System.out.println();
+       
+        for(int i=0; i<q1.size(); i++)
+        {
+            Process temp=q1.dequeue();
+            System.out.print(temp.name+"\t");
+            q1.enqueue(temp);
+        }
+       System.out.println();
+       
+        for(int i=0; i<q2.size(); i++)
+        {
+            Process temp=q2.dequeue();
+            System.out.print(temp.name+"\t");
+            q2.enqueue(temp);
+        }
+       System.out.println();
+       
+        for(int i=0; i<q3.size(); i++)
+        {
+            Process temp=q3.dequeue();
+            System.out.print(temp.name+"\t");
+            q3.enqueue(temp);
+        }
+       System.out.println();
+     
+       
+        
+       System.out.println("\n\n--------------------------------------"); 
+    }
+    
     
     public static Process getQueuedProcess()
     {
-        Process toRun;
-        
-        if((toRun=q0.dequeue())==null)
-            if((toRun=q1.dequeue())==null)
-                if((toRun=q2.dequeue())==null)
-                    if((toRun=q3.dequeue())==null);
-                        
-        
-        
+        if(currentProcess!=null && currentProcess.quantum>0)
+        {
+            
+                
+            return currentProcess;
+        }
+           
        
         
-        return toRun;
+        Process toRun1;
+        
+        if((toRun1=q0.dequeue())==null)
+            if((toRun1=q1.dequeue())==null)
+                if((toRun1=q2.dequeue())==null)
+                    if((toRun1=q3.dequeue())==null);
+                        
+
+       
+        
+        return toRun1;
     }
+    
+    
 
 }
