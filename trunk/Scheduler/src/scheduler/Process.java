@@ -18,6 +18,9 @@ public class Process {
     int quantum;
     int initQuantum;
     
+    User user;
+    int[]tickets;
+    
     public Process(String name, int Tr, int Ta, String username)
     {
         this.name=name;
@@ -25,6 +28,22 @@ public class Process {
         this.Tr=Tr;
         this.username=username;  
     }
+    
+     public Process(String name, int Tr, int Ta, User user)
+    {
+        this.name=name;
+        this.Ta=Ta;
+        this.Tr=Tr;
+        this.user=user; 
+        tickets=new int[user.priority];
+    }
+     
+       public Process()
+    {
+         
+    }
+    
+    
     
      public Process(String name, int Tr, int Ta, String username, int quantum)
     {
