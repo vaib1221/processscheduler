@@ -5,6 +5,8 @@
 
 package scheduler;
 
+import java.util.Random;
+
 /**
  *
  * @author tarek
@@ -35,9 +37,9 @@ public class Main{
        
       // startShortestTimeRemaining(processes);
         
-        startMultilevelFeedback(processes);
-       
-       
+        //startMultilevelFeedback(processes);
+        
+        new LotteryScheduling().start();  
      //System.out.println(getShortestTimeRemainingProcess(processes, 4, processes[0]).name);
         
     }
@@ -293,6 +295,8 @@ public class Main{
         
         return toRun1;
     }
+    
+
     
     
 
