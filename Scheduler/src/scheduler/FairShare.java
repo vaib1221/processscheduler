@@ -54,9 +54,27 @@ public class FairShare {
         
     }
     
+    public void printTimeLine(int runtime)
+    {
+        for(int i=0; i<runtime; i++)
+        {
+            System.out.print(i+"\t");
+        }
+        System.out.println();
+    }
+    
     public void start()
     {
-       
+       //First get total time
+        
+        int totalTime=0;
+        
+        for(int i=0; i<processes.length; i++)
+        {
+            totalTime+=processes[i].Tr;
+        }
+        
+        printTimeLine(totalTime);
     }
 
 }
